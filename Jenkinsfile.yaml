@@ -27,6 +27,11 @@ pipeline:
     - stage: Prod_Deploy
       when: 
         - branch 'production'
+      input:
+        message: "message"
+        id: "prod_deploy_approval"
+        ok: "Deploy"
+        submitter: "admin"
       steps:
         - echo "Deploying to production server from ${BRANCH_NAME} branch"
 
