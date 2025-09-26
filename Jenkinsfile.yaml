@@ -3,11 +3,7 @@ pipeline:
   environment:
     PROJECT_NAME: "MyProject"
 
-  stages:
-    - stage: Checkout
-      steps:
-        - echo "Starting checkout stage from ${BRANCH_NAME} branch for the project ${PROJECT_NAME}"
-    
+  stages:   
     - stage: Build
       steps:
         - echo "Building the project ${PROJECT_NAME} from ${BRANCH_NAME} branch"
