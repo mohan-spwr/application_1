@@ -1,0 +1,39 @@
+pipeline:
+  agent: any
+  environment:
+    PROJECT_NAME: "MyProject"
+
+  stages:
+    - stage: Checkout
+      steps:
+        - echo "Starting checkout stage from ${BRANCH_NAME} branch for the project ${PROJECT_NAME}"
+    
+    - stage: Build
+      steps:
+        - echo "Building the project ${PROJECT_NAME} from ${BRANCH_NAME} branch"
+    
+    - stage: Test
+      steps:
+        - echo "Running tests for the project ${PROJECT_NAME}"
+    
+    - stage: Deployment_to_development_environment
+      when:
+        - branch 'develop'
+      steps:    
+        - echo "Deploying to development server from ${BRANCH_NAME} branch"
+    
+    - stage: Deployment_to_UAT_environment
+      when:
+        - branch 'uat'
+      steps:
+        - echo "Deploying to staging server from ${BRANCH_NAME} branch"
+    
+    - stage: Deployment_to_production_environment
+      when: 
+        - branch 'production'
+      steps:
+        - echo "Deploying to production server from ${BRANCH_NAME} branch"
+
+  post:
+    always:
+      - echo "Pipeline finished."
