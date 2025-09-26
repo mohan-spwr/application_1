@@ -1,30 +1,30 @@
 pipeline:
   agent: any
   environment:
-    PROJECT_NAME: "MyProject"
+    PROJECT_NAME: "APPLICATION-NAME"
 
   stages:   
     - stage: Build
       steps:
-        - echo "Building the project ${PROJECT_NAME} from ${BRANCH_NAME} branch"
+        - echo "Building the ${PROJECT_NAME} from ${BRANCH_NAME} branch"
     
     - stage: Test
       steps:
-        - echo "Running tests for the project ${PROJECT_NAME}"
+        - echo "Running tests for ${PROJECT_NAME}"
     
-    - stage: Deployment_to_development_environment
+    - stage: Dev_Deploy
       when:
         - branch 'develop'
       steps:    
         - echo "Deploying to development server from ${BRANCH_NAME} branch"
     
-    - stage: Deployment_to_UAT_environment
+    - stage: UAT_Deploy
       when:
         - branch 'uat'
       steps:
         - echo "Deploying to staging server from ${BRANCH_NAME} branch"
     
-    - stage: Deployment_to_production_environment
+    - stage: Prod_Deploy
       when: 
         - branch 'production'
       steps:
