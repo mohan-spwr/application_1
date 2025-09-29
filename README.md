@@ -1,2 +1,2 @@
 # application_1
-testing-approar
+test-trigger
